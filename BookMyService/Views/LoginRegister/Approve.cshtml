@@ -1,0 +1,29 @@
+﻿@model BookMyService.Models.RegisterViewModel
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">UserName</th>
+      <th scope="col">UserType</th>
+      <th scope="col">Approve</th>
+    </tr>
+  </thead>
+@foreach(var x in Model.Registers)
+{
+ <tbody>
+                            <td>@Html.DisplayFor(m => x.UserName)</td>
+ 
+                            <td>@Html.DisplayFor(m => x.UserType)</td>
+ 
+                            <td>@Html.DisplayFor(m => x.Approve)</td>
+                            
+                            <td>
+                                <form asp-controller="LoginRegister" asp-action="Approve" method="post">
+                                    <input asp-for="Id" type="hidden" class="form-control" value=@x.Id placeholder="Name">
+                                     <button type="submit" class="btn btn-primary">Approve</button>
+                                </form>
+
+                            </td>
+</tbody>
+}
+</table>

@@ -1,0 +1,33 @@
+﻿@model BookMyService.Models.ServiceViewModel
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Service Name</th>
+      <th scope="col">StartDate</th>
+      <th scope="col">FinishDate</th>
+      <th scope="col">BookDate</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+@foreach(var x in Model.ServiceList)
+{
+ <tbody>
+                            <td>@Html.DisplayFor(m => x.Name)</td>
+ 
+                            <td>@Html.DisplayFor(m => x.StartDate)</td>
+ 
+                            <td>@Html.DisplayFor(m => x.FinishDate)</td>
+                            <td>@Html.DisplayFor(m => x.BookDate)</td>
+                            <td>
+
+                                <form asp-controller="Seeker" asp-action="Booked" method="post">
+                                    <input asp-for="Name" type="hidden" class="form-control" value=@x.Name placeholder="Name">
+                                    <input asp-for="ProviderDetail" type="hidden" class="form-control" value=@x.ProviderDetail placeholder="Name">
+                                     <button type="submit" class="btn btn-primary">Book</button>
+                                     </form>
+
+                            </td>
+</tbody>
+}
+</table>
